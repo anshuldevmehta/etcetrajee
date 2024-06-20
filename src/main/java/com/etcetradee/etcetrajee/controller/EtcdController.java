@@ -30,5 +30,13 @@ public class EtcdController {
             return ResponseEntity.ok(responseCompletableFuture.get().getPrevKv().getValue().toString());
         //return ResponseEntity.internalServerError().body("Nahi Dali Value");
     }
+
+    @PutMapping("keystoreparty/{key}")
+    public ResponseEntity<String> putKeyStore(@PathVariable String key) throws ExecutionException, InterruptedException {
+        CompletableFuture<PutResponse> responseCompletableFuture= etcdService.loadKeyStoreInEtcd(key);
+        //if(responseCompletableFuture.isDone())
+        return ResponseEntity.ok(responseCompletableFuture.get().getPrevKv().getValue().toString());
+        //return ResponseEntity.internalServerError().body("Nahi Dali Value");
+    }
 }
 
